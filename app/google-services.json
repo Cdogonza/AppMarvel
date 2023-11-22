@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:729210496278:android:ccfacdbca17d3fd7b79c37",
+        "android_client_info": {
+          "package_name": "com.example.marvel_app_final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWZmZtyldTBf-5COEXelI1OQ8_Nr89ti0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:729210496278:android:fa1dd486c76a4e25b79c37",
         "android_client_info": {
           "package_name": "com.example.myapplication"

@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/fragment_horizontal_margin"
     android:paddingBottom="@dimen/fragment_vertical_margin"
     android:background="@drawable/marvel_bg"
->
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
