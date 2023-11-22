@@ -15,17 +15,17 @@ class MarvelApp: Application() {
 
         startKoin {
             androidLogger()
-            androidContext(this@MarvelApp)
-            modules(
-                listOf(
-                    repositoriesModule,
-                    viewModelsModule,
-                    networkModule
-                )
-            )
+//            androidContext(this@MarvelApp)
+//            modules(
+//                listOf(
+//                    repositoriesModule,
+//                    viewModelsModule,
+//                    networkModule
+//                )
+//            )
         }
 
     }
-    }
+}
 
 

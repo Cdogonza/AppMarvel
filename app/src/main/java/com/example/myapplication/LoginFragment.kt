@@ -26,7 +26,7 @@ class LoginFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
 
-        binding.login.setOnClickListener {
+        binding.loginBtn.setOnClickListener {
 
             if (binding.email.text?.isNotEmpty() == true && binding.password.text?.isNotEmpty() == true) {
 
@@ -37,7 +37,7 @@ class LoginFragment : Fragment() {
                 Toast.makeText(requireContext(), "Debe de Rellenar los campos de Email y Password", Toast.LENGTH_SHORT).show()
             }
         }
-        binding.registrar.setOnClickListener {
+        binding.signUpBtn.setOnClickListener {
             if (binding.email.text?.isNotEmpty() == true && binding.password.text?.isNotEmpty() == true) {
 
             val email = binding.email.text.toString()
@@ -64,7 +64,6 @@ class LoginFragment : Fragment() {
 
 
     private fun login(email: String, password: String) {
-
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -85,8 +84,6 @@ class LoginFragment : Fragment() {
         transaction.replace(R.id.fragment_Container, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
-
-
     }
 
 
