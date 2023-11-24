@@ -12,13 +12,13 @@ class ComicDetailViewModel(
     private val getCharacterByComicIdUseCase: GetCharacterByComicIdUseCase
 ): ViewModel() {
 
-    private val _comicsLiveData = MutableLiveData<List<Character>>()
-    val comics = _comicsLiveData as LiveData<List<Character>>
+    private val _charactersLiveData = MutableLiveData<List<Character>>()
+    val characters = _charactersLiveData as LiveData<List<Character>>
 
     fun getCharacterByComicId(comicId: Int) {
         viewModelScope.launch {
             val character = getCharacterByComicIdUseCase(comicId)
-            _comicsLiveData.value = character
+            _charactersLiveData.value = character
         }
     }
 }
