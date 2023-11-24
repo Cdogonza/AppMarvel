@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/marvel_bg"
     tools:context=".view.AllCharactersFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,9 +17,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/charactersRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/marvel_bg"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
