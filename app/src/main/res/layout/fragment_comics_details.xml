@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:background="@color/black"
         android:padding="24dp"
-        tools:context=".view.ComicsDetails">
+        tools:context=".view.ComicsDetailsFragment">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/detailsComiccardView"
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
-                tools:context=".view.ComicsDetails">
+                tools:context=".view.ComicsDetailsFragment">
 
             <ImageView
                 android:layout_gravity="center"
