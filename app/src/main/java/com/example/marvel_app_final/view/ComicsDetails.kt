@@ -65,6 +65,7 @@ class ComicsDetails : Fragment()  {
             layoutManager = LinearLayoutManager(requireContext(),
                 LinearLayoutManager.HORIZONTAL,false)
             adapter = ComicDetailAdapter(characterList)
+
         }
     }
 

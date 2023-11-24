@@ -14,7 +14,7 @@ import com.example.marvel_app_final.model.comics.Comic
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
-class CharactersDetailAdapter(private val characterList: List<Comic>): RecyclerView.Adapter<CharactersDetailAdapter.CharacterDetailViewHolder>() {
+class CharactersDetailAdapter(private val characterList: List<Comic>, private val onComicClicked: (Comic) -> Unit): RecyclerView.Adapter<CharactersDetailAdapter.CharacterDetailViewHolder>() {
 
     inner class CharacterDetailViewHolder(val binding: ItemCharacterDetailBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -41,6 +41,11 @@ class CharactersDetailAdapter(private val characterList: List<Comic>): RecyclerV
                     }
                 })
             comicTxtView.text = characterDetail.title
+            root.setOnClickListener {
+                onComicClicked(characterDetail)
+
+
+            }
         }
     }
 
