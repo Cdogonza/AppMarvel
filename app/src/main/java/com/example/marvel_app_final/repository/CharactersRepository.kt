@@ -6,10 +6,11 @@ import androidx.paging.PagingData
 import com.example.marvel_app_final.api.MarvelService
 import com.example.marvel_app_final.constant.Constant
 import kotlinx.coroutines.flow.Flow
+import com.example.marvel_app_final.model.character.Character
 
 class CharactersRepository(private val apiService: MarvelService) {
 
-    fun getResultStream(): Flow<PagingData<com.example.marvel_app_final.model.character.Character>> {
+    fun getResultStream(): Flow<PagingData<Character>> {
         return Pager(config = PagingConfig(pageSize = pageSize, maxSize = pageMax),
             pagingSourceFactory = { CharacterPagingSource(apiService) }
         ).flow

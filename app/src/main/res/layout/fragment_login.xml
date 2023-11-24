@@ -10,6 +10,7 @@
     android:paddingRight="@dimen/fragment_horizontal_margin"
     android:paddingBottom="@dimen/fragment_vertical_margin"
     android:background="@drawable/marvel_bg"
+
     >
 
     <androidx.cardview.widget.CardView
@@ -66,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Contraseña"
+                    android:inputType="textPassword"
                     android:textColor="@color/principal"
                     android:textColorHint="@color/principal"
                     android:textSize="24sp" />
@@ -76,9 +78,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="16dp"
-                android:background="@null"
+                android:background="@color/principal"
                 android:text="Recuperar contraseña"
-                android:textColor="@color/principal"
+                android:textColor="@color/white"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.9"
@@ -151,9 +153,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@null"
+                android:background="@color/principal"
                 android:text="¿No tienes cuenta? Regístrate"
-                android:textColor="@color/principal"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

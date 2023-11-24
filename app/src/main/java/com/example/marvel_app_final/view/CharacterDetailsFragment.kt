@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -14,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.example.marvel_app_final.R
 import com.example.marvel_app_final.adapter.CharactersDetailAdapter
 import com.example.marvel_app_final.databinding.FragmentCharacterDetailsBinding
+import com.example.marvel_app_final.model.character.Character
 import com.example.marvel_app_final.model.comics.Comic
 import com.example.marvel_app_final.viewmodel.CharacterDetailsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,7 +32,10 @@ class CharacterDetailsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentCharacterDetailsBinding.inflate(inflater, container, false)
+
         return binding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,6 +72,7 @@ class CharacterDetailsFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext(),
                 LinearLayoutManager.HORIZONTAL,false)
             adapter = CharactersDetailAdapter(comicList)
+
         }
     }
 
