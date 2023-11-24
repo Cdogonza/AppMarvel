@@ -39,28 +39,33 @@ class ComicsDetails : Fragment()  {
         val(uri,title,issueNumber) = getDetailsWithSafeArgs()
         setupViews(uri,title, issueNumber)
 
-        viewModel.comics.observe(viewLifecycleOwner){ characterList ->
+        viewModel.characters.observe(viewLifecycleOwner){ characterList ->
             setRecyclerView(characterList)
         }
         viewModel.getCharacterByComicId(args.comic.id)
     }
-    private fun getDetailsWithSafeArgs() : Triple<String,String,Int> {
+    private fun getDetailsWithSafeArgs() : Triple<String,String,String> {
         val uri = args.comic.thumbnail.path + "." + args.comic.thumbnail.extension
-        val title =  args.comic.title
-        val issueNumber = args.comic.issueNumber
-        return  Triple(uri,title,issueNumber)
+        val title =  args.comic.title + " #" + args.comic.issueNumber
+        val detail = args.comic.description
+        return  Triple(uri,title,detail)
 
     }
     @SuppressLint("StringFormatInvalid")
-    private fun setupViews(uri:String, title:String, issueNumber: Int){
+    private fun setupViews(uri:String, title:String, detail: String){
         binding.apply {
             Glide.with(this@ComicsDetails).load(uri).into(detailsComicImageView)
             TittleComic.text = title
-            IssueNumber.text = issueNumber.toString()
+            if (detail.isEmpty()){
+                DetailsComic.text = getString(R.string.comic_unknown)
+            }else{
+                DetailsComic.text = detail
+            }
 
         }
     }
-    private fun setRecyclerView(characterList: List<Character>){
+
+        private fun setRecyclerView(characterList: List<Character>){
         binding.ComicDetailRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(),
                 LinearLayoutManager.HORIZONTAL,false)
