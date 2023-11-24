@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -14,27 +16,16 @@ import com.bumptech.glide.Glide
 import com.example.marvel_app_final.R
 import com.example.marvel_app_final.adapter.CharactersDetailAdapter
 import com.example.marvel_app_final.databinding.FragmentCharacterDetailsBinding
+import com.example.marvel_app_final.model.character.Character
 import com.example.marvel_app_final.model.comics.Comic
 import com.example.marvel_app_final.viewmodel.CharacterDetailsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
-import androidx.paging.LoadState
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.marvel_app_final.adapter.AllCharactersAdapter
-import com.example.marvel_app_final.databinding.FragmentAllCharactersBinding
-import com.example.marvel_app_final.helper.NetworkChecker
-import com.example.marvel_app_final.viewmodel.AllCharactersViewModel
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 class CharacterDetailsFragment : Fragment() {
 
     val args: CharacterDetailsFragmentArgs by navArgs()
     private lateinit var binding: FragmentCharacterDetailsBinding
     private val viewModel: CharacterDetailsViewModel by viewModel()
-    private lateinit var comicDetailsAdapter: CharactersDetailAdapter
     private val navController: NavController by lazy {
         findNavController()
     }
@@ -43,6 +34,8 @@ class CharacterDetailsFragment : Fragment() {
         binding = FragmentCharacterDetailsBinding.inflate(inflater, container, false)
 
         return binding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,7 +43,7 @@ class CharacterDetailsFragment : Fragment() {
         val(uri,description,name) = getDetailsWithSafeArgs()
         setupViews(uri,description,name)
 
-        viewModel.comics.observe(viewLifecycleOwner){ comicList ->
+        viewModel.character.observe(viewLifecycleOwner){ comicList ->
             setRecyclerView(comicList)
         }
         viewModel.getComicsByCharacterId(args.character.id)
@@ -78,12 +71,10 @@ class CharacterDetailsFragment : Fragment() {
         binding.detailRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(),
                 LinearLayoutManager.HORIZONTAL,false)
-//            comicDetailsAdapter = CharactersDetailAdapter(comicList) { comic ->
-//                val directions = CharacterDetailsFragmentDirections
-//                    .actionCharacterDetailsFragmentToComicDetails(comic)
-//                findNavController().navigate(directions)
-//            }
-            adapter = CharactersDetailAdapter(comicList)
+            adapter = CharactersDetailAdapter(comicList) { comic ->
+                navController.navigate(R.id.action_characterDetailsFragment_to_comicsDetails)
+            }
+
         }
     }
 

@@ -61,6 +61,8 @@ class AllCharactersFragment : Fragment() {
                 showEmptyList(isListEmpty)
 
                 binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+
+
             }
         }
     }

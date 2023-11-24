@@ -14,7 +14,7 @@ class CharacterDetailsViewModel(
 ): ViewModel() {
 
     private val _comicsLiveData = MutableLiveData<List<Comic>>()
-    val comics = _comicsLiveData as LiveData<List<Comic>>
+    val character = _comicsLiveData as LiveData<List<Comic>>
 
     fun getComicsByCharacterId(characterId: Int) {
         viewModelScope.launch {
