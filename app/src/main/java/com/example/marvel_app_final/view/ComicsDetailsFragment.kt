@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -16,15 +15,15 @@ import com.example.marvel_app_final.R
 import com.example.marvel_app_final.adapter.ComicDetailAdapter
 import com.example.marvel_app_final.databinding.FragmentComicsDetailsBinding
 import com.example.marvel_app_final.model.character.Character
-
 import com.example.marvel_app_final.viewmodel.ComicDetailViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ComicsDetails : Fragment()  {
+class ComicsDetailsFragment : Fragment()  {
 
-    val args: ComicsDetailsArgs by navArgs()
+    val args: ComicsDetailsFragmentArgs by navArgs()
     private lateinit var binding: FragmentComicsDetailsBinding
     private val viewModel: ComicDetailViewModel by viewModel()
+    private lateinit var comicDetailAdapter: ComicDetailAdapter
     private val navController: NavController by lazy {
         findNavController()
     }
@@ -54,7 +53,7 @@ class ComicsDetails : Fragment()  {
     @SuppressLint("StringFormatInvalid")
     private fun setupViews(uri:String, title:String, detail: String){
         binding.apply {
-            Glide.with(this@ComicsDetails).load(uri).into(detailsComicImageView)
+            Glide.with(this@ComicsDetailsFragment).load(uri).into(detailsComicImageView)
             TittleComic.text = title
             if (detail.isEmpty()){
                 DetailsComic.text = getString(R.string.comic_unknown)
@@ -69,6 +68,7 @@ class ComicsDetails : Fragment()  {
         binding.ComicDetailRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(),
                 LinearLayoutManager.HORIZONTAL,false)
+
             adapter = ComicDetailAdapter(characterList)
         }
     }

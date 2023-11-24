@@ -22,6 +22,15 @@
 
     </fragment>
     <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.marvel_app_final.view.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_allCharactersFragment"
+            app:destination="@id/allCharactersFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/characterDetailsFragment"
         android:name="com.example.marvel_app_final.view.CharacterDetailsFragment"
         android:label="@string/details_title_action_bar"
@@ -35,17 +44,8 @@
             app:destination="@id/comicsDetails" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.marvel_app_final.view.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_allCharactersFragment"
-            app:destination="@id/allCharactersFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/comicsDetails"
-        android:name="com.example.marvel_app_final.view.ComicsDetails"
+        android:name="com.example.marvel_app_final.view.ComicsDetailsFragment"
         android:label="ComicsDetails"
         tools:layout="@layout/fragment_comics_details">
     <argument

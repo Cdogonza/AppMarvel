@@ -23,6 +23,7 @@ import androidx.navigation.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.marvel_app_final.adapter.AllCharactersAdapter
+import com.example.marvel_app_final.adapter.ComicDetailAdapter
 import com.example.marvel_app_final.databinding.FragmentAllCharactersBinding
 import com.example.marvel_app_final.helper.NetworkChecker
 import com.example.marvel_app_final.viewmodel.AllCharactersViewModel
@@ -34,7 +35,7 @@ class CharacterDetailsFragment : Fragment() {
     val args: CharacterDetailsFragmentArgs by navArgs()
     private lateinit var binding: FragmentCharacterDetailsBinding
     private val viewModel: CharacterDetailsViewModel by viewModel()
-    private lateinit var comicDetailsAdapter: CharactersDetailAdapter
+    private lateinit var comicDetailAdapter: CharactersDetailAdapter
     private val navController: NavController by lazy {
         findNavController()
     }
@@ -74,16 +75,18 @@ class CharacterDetailsFragment : Fragment() {
             }
         }
     }
+
+
     private fun setRecyclerView(comicList: List<Comic>){
         binding.detailRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext(),
                 LinearLayoutManager.HORIZONTAL,false)
-//            comicDetailsAdapter = CharactersDetailAdapter(comicList) { comic ->
-//                val directions = CharacterDetailsFragmentDirections
-//                    .actionCharacterDetailsFragmentToComicDetails(comic)
-//                findNavController().navigate(directions)
-//            }
-            adapter = CharactersDetailAdapter(comicList)
+
+            adapter = CharactersDetailAdapter(comicList) { comic ->
+                val directions = CharacterDetailsFragmentDirections
+                    .actionCharacterDetailsFragmentToComicsDetails(comic)
+                findNavController().navigate(directions)
+            }
         }
     }
 

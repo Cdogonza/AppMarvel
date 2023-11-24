@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvel_app_final.R
@@ -14,7 +15,7 @@ import com.example.marvel_app_final.model.comics.Comic
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
-class CharactersDetailAdapter(private val characterList: List<Comic>): RecyclerView.Adapter<CharactersDetailAdapter.CharacterDetailViewHolder>() {
+class CharactersDetailAdapter(private val characterList: List<Comic>, private val onItemClickListener:((Comic) -> Unit)): RecyclerView.Adapter<CharactersDetailAdapter.CharacterDetailViewHolder>() {
 
     inner class CharacterDetailViewHolder(val binding: ItemCharacterDetailBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -41,11 +42,16 @@ class CharactersDetailAdapter(private val characterList: List<Comic>): RecyclerV
                     }
                 })
             comicTxtView.text = characterDetail.title
+            holder.itemView.setOnClickListener {
+                onItemClickListener.invoke(characterDetail)
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return characterList.size
     }
+
+
 
 }
