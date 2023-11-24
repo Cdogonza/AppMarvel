@@ -1,12 +1,18 @@
 package com.example.marvel_app_final.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.marvel_app_final.R
 import com.example.marvel_app_final.databinding.ItemCharacterDetailBinding
+import com.example.marvel_app_final.model.character.Character
 import com.example.marvel_app_final.model.comics.Comic
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 
 class CharactersDetailAdapter(private val characterList: List<Comic>): RecyclerView.Adapter<CharactersDetailAdapter.CharacterDetailViewHolder>() {
 
@@ -21,8 +27,19 @@ class CharactersDetailAdapter(private val characterList: List<Comic>): RecyclerV
         val characterDetail = characterList[position]
         with(holder.binding){
             val uri = "${characterDetail.thumbnail.path}.jpg"
-            Glide.with(comicimageView).load(uri).into(comicimageView)
+            Picasso
+                .get()
+                .load(uri)
+                .error(R.drawable.ic_launcher_foreground)
+                .into(holder.binding.comicimageView, object : Callback {
+                    override fun onSuccess() {
+                        holder.binding.progressBar.visibility = View.GONE;
+                    }
 
+                    override fun onError(e: Exception?) {
+
+                    }
+                })
             comicTxtView.text = characterDetail.title
         }
     }

@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.marvel_app_final.R
 import com.example.marvel_app_final.databinding.ItemCharacterBinding
 import com.example.marvel_app_final.model.character.Character
@@ -17,8 +16,7 @@ import com.squareup.picasso.Picasso
 
 
 class AllCharactersAdapter(
-    private val onItemClickListener: ((Character) -> Unit)
-): PagingDataAdapter<Character, AllCharactersAdapter.MyViewHolder>(DiffUtilCallBack()) {
+    private val onItemClickListener: ((Character) -> Unit)): PagingDataAdapter<Character, AllCharactersAdapter.MyViewHolder>(DiffUtilCallBack()) {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = getItem(position)
@@ -55,10 +53,10 @@ class AllCharactersAdapter(
             binding.characterName.text = data.name
 
 
-                itemView.setOnClickListener {
+            itemView.setOnClickListener {
                     onItemClickListener.invoke(data)
                 }
-        //    }
+
         }
     }
 

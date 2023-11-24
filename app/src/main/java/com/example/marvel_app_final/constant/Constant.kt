@@ -7,7 +7,4 @@ object Constant {
     const val LIMIT = 30
     const val MAX_PAGE = 200
 
-    const val  COMICS_LIMIT = 10
-    const val COMICS_START_DATE = "2005-01-01"
-    const val COMICS_ORDER_BY = "-onsaleDate"
 }
