@@ -20,6 +20,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_allCharactersFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
 
     </fragment>
     <fragment
