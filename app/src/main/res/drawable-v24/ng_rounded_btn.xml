@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--rectangulo con bordes redondeados y de color principal-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/principal"/>
+    <corners android:radius="32dp"/>
+</shape>

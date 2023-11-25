@@ -7,12 +7,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:729210496278:android:fa1dd486c76a4e25b79c37",
+        "mobilesdk_app_id": "1:729210496278:android:ccfacdbca17d3fd7b79c37",
         "android_client_info": {
-          "package_name": "com.example.myapplication"
+          "package_name": "com.example.marvel_app_final"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "729210496278-oaqjsk8233pnfl7fqblcseq92qhhanie.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.marvel_app_final",
+            "certificate_hash": "3aef1de0792827d888665403654ed05e602c902c"
+          }
+        },
+        {
+          "client_id": "729210496278-vks6cum7mrmdlivo9ao5h3ddva5nosep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCWZmZtyldTBf-5COEXelI1OQ8_Nr89ti0"
@@ -20,7 +33,41 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729210496278-vks6cum7mrmdlivo9ao5h3ddva5nosep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729210496278:android:fa1dd486c76a4e25b79c37",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729210496278-vks6cum7mrmdlivo9ao5h3ddva5nosep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWZmZtyldTBf-5COEXelI1OQ8_Nr89ti0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729210496278-vks6cum7mrmdlivo9ao5h3ddva5nosep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
