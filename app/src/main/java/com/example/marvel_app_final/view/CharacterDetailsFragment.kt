@@ -51,7 +51,7 @@ class CharacterDetailsFragment : Fragment() {
         val(uri,description,name) = getDetailsWithSafeArgs()
         setupViews(uri,description,name)
 
-        viewModel.comics.observe(viewLifecycleOwner){ comicList ->
+        viewModel.character.observe(viewLifecycleOwner){ comicList ->
             setRecyclerView(comicList)
         }
         viewModel.getComicsByCharacterId(args.character.id)

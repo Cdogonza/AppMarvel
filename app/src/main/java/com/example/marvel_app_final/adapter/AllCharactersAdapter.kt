@@ -54,7 +54,9 @@ class AllCharactersAdapter(
 
 
             itemView.setOnClickListener {
-                    onItemClickListener.invoke(data)
+
+             onItemClickListener.invoke(data)
+
                 }
 
         }

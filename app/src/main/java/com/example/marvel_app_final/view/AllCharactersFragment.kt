@@ -5,17 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.marvel_app_final.adapter.AllCharactersAdapter
 import com.example.marvel_app_final.databinding.FragmentAllCharactersBinding
 import com.example.marvel_app_final.helper.NetworkChecker
+import com.example.marvel_app_final.model.character.Character
 import com.example.marvel_app_final.viewmodel.AllCharactersViewModel
+import com.example.marvel_app_final.viewmodel.SearchCharacterbyIdViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,7 +38,27 @@ class AllCharactersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentAllCharactersBinding.inflate(inflater, container, false)
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                return true
+            }
+
+        })
+
+
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -93,3 +118,5 @@ class AllCharactersFragment : Fragment() {
         }
     }
 }
+
+
