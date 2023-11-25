@@ -12,6 +12,7 @@ import com.example.marvel_app_final.R
 import com.example.marvel_app_final.databinding.ItemCharacterDetailBinding
 import com.example.marvel_app_final.model.character.Character
 import com.example.marvel_app_final.model.comics.Comic
+import com.example.marvel_app_final.utils.Favorites
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 

@@ -1,5 +1,6 @@
 package com.example.marvel_app_final
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,14 +13,21 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.example.marvel_app_final.databinding.FragmentLoginBinding
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val editor = binding.root.context.getSharedPreferences("sharedPrefs", MODE_PRIVATE).edit()
+        editor.putBoolean("isLogged", false)
+        editor.putString("email", "")
+        editor.apply()
+
     }
 
     override fun onCreateView(
@@ -28,7 +36,10 @@ class LoginFragment : Fragment() {
     ): View? {
 
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
-
+        val editor = binding.root.context.getSharedPreferences("sharedPrefs", MODE_PRIVATE).edit()
+        editor.putBoolean("isLogged", false)
+        editor.putString("email", "")
+        editor.apply()
 
         binding.loginBtn.setOnClickListener {
 
@@ -36,6 +47,9 @@ class LoginFragment : Fragment() {
 
                 val email = binding.email.text.toString()
                 val password = binding.password.text.toString()
+                editor.putBoolean("isLogged", true)
+                editor.putString("email", email)
+                editor.apply()
                 login(email, password)
             }else{
                 Toast.makeText(requireContext(), "Debe de Rellenar los campos de Email y Password", Toast.LENGTH_SHORT).show()

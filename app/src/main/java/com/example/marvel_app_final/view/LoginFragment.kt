@@ -1,5 +1,6 @@
 package com.example.marvel_app_final.view
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -39,6 +40,10 @@ private val GOOGLE_SIGNIN = 100
                 val credential = GoogleAuthProvider.getCredential(account.idToken,null)
                 FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                     if (it.isSuccessful){
+                        val editor = binding.root.context.getSharedPreferences("sharedPrefs", MODE_PRIVATE).edit()
+                        editor.putBoolean("isLogged", true)
+                        editor.putString("email", account?.displayName)
+                        editor.apply()
                         showDashboard()
                     }else{
                         showError()
