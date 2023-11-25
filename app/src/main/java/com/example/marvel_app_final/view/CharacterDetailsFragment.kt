@@ -1,6 +1,7 @@
 package com.example.marvel_app_final.view
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ import com.example.marvel_app_final.adapter.AllCharactersAdapter
 import com.example.marvel_app_final.adapter.ComicDetailAdapter
 import com.example.marvel_app_final.databinding.FragmentAllCharactersBinding
 import com.example.marvel_app_final.helper.NetworkChecker
+import com.example.marvel_app_final.utils.Favorites
 import com.example.marvel_app_final.viewmodel.AllCharactersViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -43,6 +45,19 @@ class CharacterDetailsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentCharacterDetailsBinding.inflate(inflater, container, false)
 
+        binding.favBtn.setOnClickListener(){
+            var fav = Favorites.favorites
+            if (fav.contains(args.character.id)) {
+                binding.favBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.baseline_favorite_shadow_24)
+                fav.remove(args.character.id)
+            }else{
+                binding.favBtn.background = ContextCompat.getDrawable(requireContext(), R.drawable.baseline_favorite_24)
+                fav.add(args.character.id)
+            }
+            super.onResume()
+            Favorites.favorites = fav
+        }
+        super.onResume()
         return binding.root
     }
 
@@ -55,11 +70,13 @@ class CharacterDetailsFragment : Fragment() {
             setRecyclerView(comicList)
         }
         viewModel.getComicsByCharacterId(args.character.id)
+
     }
     private fun getDetailsWithSafeArgs() : Triple<String,String,String> {
         val uri = args.character.thumbnail.path + "." + args.character.thumbnail.extension
         val description = args.character.description
         val name = args.character.name
+        super.onResume()
         return  Triple(uri,description,name)
 
     }
@@ -75,6 +92,17 @@ class CharacterDetailsFragment : Fragment() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        var fav = Favorites.favorites
+        if (fav.contains(args.character.id)){
+            binding.favBtn.setBackgroundResource(R.drawable.baseline_favorite_24)
+        }else{
+            binding.favBtn.setBackgroundResource(R.drawable.baseline_favorite_shadow_24)
+        }
+    }
+
 
 
     private fun setRecyclerView(comicList: List<Comic>){

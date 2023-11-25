@@ -1,6 +1,7 @@
 package com.example.marvel_app_final.adapter
 
 
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel_app_final.R
 import com.example.marvel_app_final.databinding.ItemCharacterBinding
 import com.example.marvel_app_final.model.character.Character
+import com.example.marvel_app_final.utils.Favorites
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 
 class AllCharactersAdapter(
     private val onItemClickListener: ((Character) -> Unit)): PagingDataAdapter<Character, AllCharactersAdapter.MyViewHolder>(DiffUtilCallBack()) {
+    //se obtiene el usuario del shared preferences
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+
+
+
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = getItem(position)
@@ -32,10 +40,17 @@ class AllCharactersAdapter(
 
 
         fun bind(data: Character) {
+                var fav = Favorites.favorites
+                if (fav.contains(data.id)){
+                    binding.favIV.setBackgroundResource(R.drawable.baseline_favorite_24)
+                }else{
+                    binding.favIV.setBackgroundResource(R.drawable.baseline_favorite_shadow_24)
+                }
 
                 val finalPath = data.thumbnail.path
                 val extension = data.thumbnail.extension
                 val path = "$finalPath.$extension"
+
 
                 Picasso
                 .get()
