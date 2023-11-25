@@ -24,9 +24,6 @@ private val GOOGLE_SIGNIN = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -65,13 +62,19 @@ private val GOOGLE_SIGNIN = 100
     ): View? {
 
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
-
+        val editor = binding.root.context.getSharedPreferences("sharedPrefs", MODE_PRIVATE).edit()
+        editor.putBoolean("isLogged", false)
+        editor.putString("email", "")
+        editor.apply()
         binding.loginBtn.setOnClickListener {
 
             if (binding.email.text?.isNotEmpty() == true && binding.password.text?.isNotEmpty() == true) {
 
                 val email = binding.email.text.toString()
                 val password = binding.password.text.toString()
+                editor.putBoolean("isLogged", true)
+                editor.putString("email", email)
+                editor.apply()
                 login(email, password)
             }else{
                 Toast.makeText(requireContext(), "Debe de Rellenar los campos de Email y Password", Toast.LENGTH_SHORT).show()
@@ -91,6 +94,9 @@ private val GOOGLE_SIGNIN = 100
             val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build()
+            editor.putBoolean("isLogged", true)
+            editor.putString("email", GoogleSignIn.getClient(it.context, googleConf).signInIntent.toString())
+            editor.apply()
             val googleClient = GoogleSignIn.getClient(requireContext(),googleConf)
             googleClient.signOut()
             startActivityForResult(googleClient.signInIntent,GOOGLE_SIGNIN)

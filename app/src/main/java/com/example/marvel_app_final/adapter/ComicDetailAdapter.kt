@@ -39,7 +39,7 @@ class ComicDetailAdapter( private val characterList: List<Character>,
             })
         binding.comicTxtView.text = data.name
         binding.root.setOnClickListener {
-            Toast.makeText(itemView.context, "hfbabfkbhfbhbvHVDhv;K", Toast.LENGTH_SHORT).show()
+            Toast.makeText(itemView.context, "END OF ROAD", Toast.LENGTH_SHORT).show()
         }
      }
     }

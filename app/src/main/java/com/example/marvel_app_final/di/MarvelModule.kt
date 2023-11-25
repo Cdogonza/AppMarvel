@@ -10,10 +10,15 @@ import com.example.marvel_app_final.repository.GetCharacterByComicId
 import com.example.marvel_app_final.repository.GetCharacterByComicIdUseCase
 import com.example.marvel_app_final.repository.GetComicsByCharacterId
 import com.example.marvel_app_final.repository.GetComicsByCharacterIdUseCase
+import com.example.marvel_app_final.repository.SearchCharacterByIdImp
+import com.example.marvel_app_final.repository.SearchCharacterByIdRepository
+import com.example.marvel_app_final.repository.SearchCharacterByIdUseCase
+import com.example.marvel_app_final.repository.SearchRepositoryById
 import com.example.marvel_app_final.resource.MarvelRetrofit
 import com.example.marvel_app_final.viewmodel.AllCharactersViewModel
 import com.example.marvel_app_final.viewmodel.CharacterDetailsViewModel
 import com.example.marvel_app_final.viewmodel.ComicDetailViewModel
+import com.example.marvel_app_final.viewmodel.SearchCharacterbyIdViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -37,6 +42,10 @@ val marvelModule = module {
 
     viewModel { ComicDetailViewModel(get()) }
 
+    single <SearchCharacterByIdUseCase> { SearchCharacterByIdImp(get()) }
 
+    single <SearchRepositoryById> { SearchCharacterByIdRepository(get()) }
+
+    viewModel { SearchCharacterbyIdViewModel(get()) }
 
 }

@@ -21,4 +21,8 @@ interface MarvelService {
     suspend fun getCharacterByComicId(
         @Path("comicId") comicId: Int): Response<MarvelResponse>
 
+    @GET("characters/{characterId}")
+    suspend fun searchCharacterById(
+        @Path("characterId") characterId: Int): Response<MarvelResponse>
+
 }
